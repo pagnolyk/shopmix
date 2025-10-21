@@ -1,22 +1,25 @@
 import './App.css'
-import Navbar from './components/Navbar.jsx'
-import Home from './pages/home.jsx'
-import {BrowserRouter as Router,Route, Routes} from 'react-router-dom'
+import Navbar from './components/Navbar/Navbar.jsx'
+import Home from './pages/Home/home.jsx'
+import {Route, Routes} from 'react-router-dom'
+import PlaceOrder from './pages/PlaceOrder/PlaceOrder.jsx'
+import Cart from './pages/Cart/Cart.jsx'
 
 function App() {
  
   return (
     <>
-    <Router>
+    <div className="app">
+    
       <Navbar />
       <Routes>
         <Route exact path='/' element={<Home/>} />
+        <Route exact path='/placeorder' element={<PlaceOrder/>} />
+        <Route exact path='/cart' element={<Cart/>} />
       </Routes>
-    </Router>
-      <h1 style={{color: 'blueviolet'}}> Bienvenue sur Shopmix </h1>
-      <p>
-        Le meilleur site de vente en ligne.
-      </p>
+    
+     
+      </div>
     </>
   )
 }
