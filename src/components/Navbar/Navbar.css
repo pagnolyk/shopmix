@@ -1,11 +1,16 @@
-.Navbar{
+.navbar{
     display: flex;
+    height: 95px;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 0;
+    padding: 0px 20px;
+    background-color: rgb(246, 240, 238);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: 2px solid white;
+    border-radius: 100px;
+    margin: 20px 0;   
 }
-
-.Navbar .logo{
+.navbar .logo{
     padding: 5px;
     width: 150px;
     height: 130px;
@@ -13,23 +18,19 @@
     flex-direction: row;
     align-items: center;
     gap: 10px;
-
 }
 
-.links{
+.navbar-menu{
     display:flex;
-    align-items:center;
-    align-content: space-between;
     gap: 20px;
-    font-size:
-     1.2em;    
-}
-
-.links a:hover{
+    font-size:1.1em;  
+    list-style: none;
+    cursor: pointer;
+ }
+.navbar-menu :hover{
     color: rgb(91, 6, 171);
     text-decoration: none;
-    font-weight: 800;
-    transition: 0.7s;   
+    font-weight: 700;  
 }
 
 .navbar-right{
@@ -38,7 +39,7 @@
     gap: 40px;
     
 }
-.Navbar button{
+.navbar button{
     background-color: transparent;
     border: 1px solid black;
     color: rgb(91, 6, 171);
@@ -48,7 +49,7 @@
     cursor: pointer;
     transition: 0.7s;
 }
-.Navbar button:hover{
+.navbar button:hover{
     background-color: rgb(91, 6, 171);
     color: white;
     transition: 0.7s;
@@ -65,3 +66,74 @@
     top: -5px;
     right: -5px;
 }
+.basket-icon{
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+}
+.navbar .active{
+    padding-bottom: 2px;
+    border-bottom: 3px solid rgb(91, 6, 171);
+}
+.navbar-spacer{
+    flex-grow: 1;
+    position: fixed;
+    z-index: 20;
+    top: 20vh;
+    right: 0;
+}
+@media (max-width: 1050px) {
+    .navbar .logo{
+        width: 140px;
+    }    
+    .navbar-menu{
+        gap: 20px;
+        font-size: 17px;
+    }
+    .navbar-right{
+        gap: 30px;
+    }
+    .navbar-right img{
+        width: 22px;
+    }
+    .navbar-right button{
+        padding: 8px 25px;
+    }
+}
+@media (max-width: 900px) {
+    .navbar .logo{
+        width: 120px;
+    }    
+    .navbar-menu{
+        gap: 15px;
+        font-size: 16px;
+    }
+    .navbar-right{
+        gap: 20px;
+    }
+    .navbar-right img{
+        width: 20px;
+    }
+    .navbar-right button{
+        padding: 7px 20px;
+        font-size: 15px;
+    }
+    .basket-icon{
+    width: 25px;
+    height: 22px;
+    cursor: pointer;
+}
+}
+
+@media (max-width: 750px) {
+     
+    .navbar-menu{
+        display: none;
+    }
+    .basket-icon{
+    width: 22px;
+    height: 20px;
+    cursor: pointer;
+}
+}
+

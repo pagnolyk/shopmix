@@ -1,9 +1,10 @@
 .header{
-    margin: auto;
+    margin: 35px 0px;
     height: 35vw;
-    background : url('header_img.png') no-repeat;
-    background-size: contain;
+    background : url('img4.jpg') no-repeat;
+    background-size:cover;
     position: relative;
+    border-radius: 10px 10px 10px 10px;
 }
 .header-contents{
     position: absolute;
@@ -18,20 +19,20 @@
 }
 .header-contents h1{
     font-weight: 600px;
-    color: white;
+    color: beige;
     font-size: max(4.5vw, 24px);
 }
 .header-contents p{
     color: white;
-    font-size: 1vw;
+    font-size: 1.5vw;
 }
 
 .header-contents button{
     background-color: white;
     color: rgb(16, 1, 1);
     font-weight: 600;
-    padding: 0.8vw 2.5vw;
-    font-size: 1vw;
+    padding: 0.8vw 2.0vw;
+    font-size: 1.2vw;
     border: none;
     border-radius: 50px;
     cursor: pointer;

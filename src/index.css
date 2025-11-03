@@ -6,7 +6,7 @@
   box-sizing: border-box;
   font-family: 'Outfit', sans-serif;
   font-optical-sizing: auto;
-
+  scroll-behavior: smooth;
 }
 body{
   min-height: 100vh;
@@ -17,7 +17,7 @@ a{
 }
 .app{
   margin: auto;
-  width: 80%;
+  width: 85%;
 }
 @keyframes fadeIn {
   0% { 
@@ -27,4 +27,35 @@ a{
     opacity: 1; 
   }
   
+}
+
+
+/* ScrollToTopButton */
+.scroll-to-top {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  width: 45px;
+  height: 45px;
+  border: none;
+  border-radius: 50%;
+  background-color: #333;
+  color: #fff;
+  font-size: 1.5rem;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  z-index: 999;
+}
+
+.scroll-to-top:hover {
+  background-color: #555;
+}
+
+/* quand visible */
+.scroll-to-top.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
 }

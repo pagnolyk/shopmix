@@ -1,31 +1,33 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {assets} from '../../assets/frontend_assets/assets.js'
-import{Link} from 'react-router-dom' 
 import './Navbar.css'
-
+import Login from '../Login/LoginPopup.jsx';
 
 function Navbar() {
+  const [menu, setMenu]=useState("menu");
 
   return (
-    <div className='Navbar'>
+    <>
+    <div className='navbar'>
         <img className='logo' src={assets.logo} alt='logo shopmix' />
-      
-        <div className='links'>
-          <Link to='/'>Accueil</Link>
-          <Link to='/'>Produits</Link>
-          <Link to='/'>Mobile</Link>
-          <Link to='/'>Contact</Link> 
-        </div>
+
+        <ul className="navbar-menu">
+          
+            <a href='/' onClick={()=>setMenu("Accueil")} className={menu==="Accueil"?"active":""}>Accueil</a>
+            <a href='#explore-menu' onClick={()=>setMenu("Produits")} className={menu==="Produits"?"active":""}>Produits</a>
+            <a href='#footer' onClick={()=>setMenu("Contact")} className={menu==="Contact"?"active":""}>Contact</a> 
+         
+        </ul>
 
         <div className='navbar-right'>
-          <img src={assets.search_icon} alt='search' className='search-icon' />
           <div className='navbar-search-icon'>
-            <img src={assets.basket_icon} alt='basket' className='basket-icon' />
+            <img src={assets.shopping_cart} alt='basket' className='basket-icon' />
             <div className="dot"></div>
           </div>
           <button>Sign In</button>
         </div>
     </div>
+    </>
   )
 }
 

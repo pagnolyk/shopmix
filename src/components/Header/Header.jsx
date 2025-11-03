@@ -5,7 +5,7 @@ function header() {
   return (
     <div className='header'>
       <div className="header-contents">
-        <h1> Bienvenue sur Shopmix </h1>
+        <h1> Bienvenue sur ShopMix </h1>
       <p>Le meilleur site de vente en ligne.</p>
         <button>Nos produits</button>
       </div>

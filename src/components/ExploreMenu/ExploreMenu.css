@@ -3,21 +3,28 @@
     flex-direction: column;
     gap: 20px;
 }
-.explore-menu h2{
-    font-weight: 600;
-    color: #333;
+.explore-menu-title{
+    font-size: clamp(1.5rem, 1.8vw, 2.5rem);
+    font-weight: 700;
+    color: white;
+    text-align: center;
+    margin-top: 20px;
+    background-color: rgb(95, 1, 95);
+    padding: 5px 0px;
+    border-radius: 4px 4px 4px 4px;
 }
 .explore-menu-text{
     max-width: 60%;
     columns: #242424;
+    font-size: clamp(0.8rem, 1.5vw, 2rem);
 }
 .explore-menu-list{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 30px;
+    gap: 20px;
     text-align: center;
-    margin: 20px 0px;
+    font-weight: 500;
     overflow-x: scroll;
 }
 .explore-menu-list::-webkit-scrollbar{
@@ -25,7 +32,7 @@
 }
 .explore-menu-list-item img{
     width: 7vw;
-    min-width: 80px;
+    min-width: 100px;
     cursor: pointer;
     object-fit: cover;
     border-radius: 50%;
@@ -43,13 +50,25 @@
     cursor: pointer;
     transition: transform 0.3s ease;
 }
-.explore-menu hr{
-    border: none;
-    height: 2px;
-    background-color: #e0e0e0;
+.explore-menu-divider{
+    height: 50px;
+    text-align: center;
+    font-size: clamp(1.4rem, 1.8vw, 2.5rem);
+    font-weight: 600;
+    align-content: center;
+    color: white;
+    background-color:rgb(95, 1, 95);
     margin: 10px 0px;
+    border-radius: 4px 4px 4px 4px;
 }
 .explore-menu-list-item :active{
     border: 4px solid rgb(95, 1, 95);
     padding: 2px;
+}
+@media (max-width : 1050px) {
+    .explore-menu-text{
+        max-width: 100%;
+        font-size: 1em;
+    }
+    
 }
