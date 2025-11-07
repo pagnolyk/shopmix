@@ -31,6 +31,7 @@ import shoes1 from './shoes1.avif'
 import casque from './casque.jpg'
 import tel from './tel.png'
 import souris from './souris.png'
+import PC5 from './PC5.jpg'
 
 import add_icon_white from './add_icon_white.png'
 import add_icon_green from './add_icon_green.png'
@@ -199,7 +200,16 @@ export const food_list = [
         price: '15,000 XAF',
         description: "Maillot de football Manchester City 2025/2026 extérieur",
         category: "Maillots"
+    },
+    {
+        _id: "12",
+        name: "Lenovo ThinkPad T14 Gen 1",
+        image: PC5,
+        price: '180,000 XAF',
+        description: "Lenovo ThinkPad T14 Gen 1  11th Gen Avec 🤫2Go Dédié 🔥🤌🏼 16Go / 256Go SSD ",
+        category: "Maillots"
     }, 
+
 
 ]
 
