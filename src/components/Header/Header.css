@@ -5,6 +5,7 @@
     background-size:cover;
     position: relative;
     border-radius: 10px 10px 10px 10px;
+    margin-top: 10vh;
 }
 .header-contents{
     position: absolute;

@@ -13,9 +13,9 @@ function Navbar() {
 
         <ul className="navbar-menu">
           
-            <a href='/' onClick={()=>setMenu("Accueil")} className={menu==="Accueil"?"active":""}>Accueil</a>
-            <a href='#explore-menu' onClick={()=>setMenu("Produits")} className={menu==="Produits"?"active":""}>Produits</a>
-            <a href='#footer' onClick={()=>setMenu("Contact")} className={menu==="Contact"?"active":""}>Contact</a> 
+            <div><a href='/' onClick={()=>setMenu("Accueil")} className={menu==="Accueil"?"active":""}>Accueil</a></div>
+            <div><a href='#explore-menu' onClick={()=>setMenu("Produits")} className={menu==="Produits"?"active":""}>Produits</a></div>
+            <div><a href='#footer' onClick={()=>setMenu("Contact")} className={menu==="Contact"?"active":""}>Contact</a></div>
          
         </ul>
 
