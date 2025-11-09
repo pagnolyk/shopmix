@@ -1,6 +1,6 @@
 import './App.css'
 import Navbar from './components/Navbar/Navbar.jsx'
-import Home from './pages/Home/home.jsx'
+import Home from './pages/Home/Home.jsx'
 import {Route, Routes} from 'react-router-dom'
 import PlaceOrder from './pages/PlaceOrder/PlaceOrder.jsx'
 import Cart from './pages/Cart/Cart.jsx'

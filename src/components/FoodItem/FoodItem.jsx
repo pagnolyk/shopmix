@@ -11,7 +11,7 @@ function FoodItem({id, name, image, price,description}) {
   return (
     <div className='food-item'>
       <div className="food-item-img-container">
-        <img src={image} alt="" className="food-item-img" />
+        <img src={image} alt={name} className="food-item-img" />
 
         {!cartItems[id]
           ?<img className='add' onClick={()=>addToCart(id)} src={assets.add_icon_white} alt=""/>

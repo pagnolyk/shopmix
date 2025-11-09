@@ -5,16 +5,22 @@ import { food_list } from '../assets/frontend_assets/assets';
 const StoreContextProvider = (props) => {
   const { children } = props;
   const [CartItems, setCartItems] = useState({});
+  const[lastQty, setLastQty] = useState(0)
+  
 
-  const addToCart = (id) => {
+  const addToCart = (id, qty = 1) => {
     console.log('addToCart called', id); // debug
     setCartItems(prev => {
       const prevQty = prev[id] || 0;
-      return { ...prev, [id]: prevQty + 1 };
+      const newQty = prevQty + qty;
+      console.log('nouvelle quantite:', newQty)
+      setLastQty(newQty)
+      return { ...prev, [id]: newQty };
     });
+   
   };
 
-  const removeFromCart = (id) => {
+  const removeFromCart = (id, qty = 1) => {
     setCartItems(prev => {
       const prevQty = prev[id] || 0;
       if (prevQty <= 1) {
@@ -22,10 +28,13 @@ const StoreContextProvider = (props) => {
         delete copy[id];
         return copy;
       }
-      return { ...prev, [id]: prevQty - 1 };
+      const newQty = prevQty - qty;
+      console.log('nouvelle quantite:', newQty)
+      setLastQty(newQty)
+      return { ...prev, [id]: newQty };
     });
   };
-
+    
   useEffect(() => {
     console.log('CartItems updated:', CartItems);
   }, [CartItems]);
@@ -33,6 +42,7 @@ const StoreContextProvider = (props) => {
   const contextValue = {
     food_list,
     cartItems: CartItems,
+    lastQty,
     addToCart,
     removeFromCart
   };
