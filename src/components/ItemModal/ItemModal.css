@@ -1,0 +1,166 @@
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    overflow-y: auto;
+    justify-content: center;
+    padding: 5rem;
+    z-index: 1000;
+    width: 100%;
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    background-color: white;
+    border-radius: 1rem;
+    margin-top: 5%;
+    padding: 1.8rem;
+    max-width: auto;
+    width: 80%;
+    max-height: 100vh;
+    overflow-y: auto;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    position: relative;
+    animation: popIn 0.25s ease-out;
+    transition: cubic-bezier(0.95, 0.05, 0.795, 0.035);
+}
+
+@keyframes popIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    color: black;
+    font-size: 1.5rem;
+    background-color:rgb(122, 119, 119);
+    border: none;
+    cursor: pointer;
+}
+
+.modal-close:hover {
+    color: #000;
+    background-color: #b30000;
+}
+
+.modal-element{
+    display: flex;
+    flex-direction: row;
+    gap: 5%;
+}
+.flex-1{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.modal-name{
+    font-size: clamp(1.2rem, 3vw, 3rem);
+    font-weight: 800;
+    color: #333;
+}
+
+.modal-image{
+    width: 35%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+.modal-desc{
+    font-size: clamp(1rem, 1.2vw, 1.3rem);
+    color: #666;
+    margin-bottom: 1vh;
+    margin-top: 20px;
+    text-align: start;
+    text-overflow: ellipsis;
+    white-space: wrap;
+    display: -webkit-box;
+  -webkit-line-clamp: 2;   
+  -webkit-box-orient: vertical;
+}
+.modal-price{
+    margin-top: 20px;
+    display: inline-block;
+    border-radius: 8px;
+    font-size: clamp(1rem,1.8vw,2.2rem);
+    font-weight: 800;
+    color: rgb(205, 3, 3);
+    margin: 5vh 0 0 0;
+}
+.counter {
+    display: flex ;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    gap: 0.5rem;
+}
+
+.counter button {
+    background-color: transparent;
+    border: none;
+    padding: 0.4rem 0.8rem;
+    font-size: 1.25rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.counter span{
+    font-weight: 600;
+    font-size: 1.1rem;
+    width: 0.5rem;
+    text-align: center;
+}
+.btn-primary {
+    background-color: #00ff33;
+    border-radius: 8px;
+    color: #fff;
+    border: none;
+    padding: 0.75rem 1.25rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s;
+    flex: 1; 
+    text-align: center;
+}
+.btn-primary:hover{
+    background-color: #00b330;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+.btn-secondary {
+    background-color: #ff0000;
+    border-radius: 8px;
+    color: #333;
+    border: none;
+    padding: 0.75rem 1.25rem;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.3s;
+    flex: 1; 
+    text-align: center;
+}
+.btn-secondary:hover{
+    background-color: #b30000;
+}

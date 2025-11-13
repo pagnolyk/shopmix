@@ -1,7 +1,7 @@
 import basket_icon from './basket_icon.png'
 import shopping_cart from './shopping-cart.png'
 import logo from './logo.png'
-import header_img2 from './header_img2.png'
+import logo3 from './logo2.jpg'
 
 import img2 from './img2.jpg'
 import img3 from './img3.jpg'   
@@ -50,12 +50,19 @@ import PC12 from './PC12.jpg'
 import mouse1 from './mouse1.jpg'
 import mouse2 from './mouse2.jpg'
 import mouse3 from './mouse3.jpg'
+import shoes2 from './shoes2.jpg'
+import shoes3 from './shoes3.jpg'
+import PC13 from './PC13.jpg'
+import PC14 from './PC14.jpg'
 
 import carousel1 from './carousel1.jpg'
 import carousel2 from './carousel2.jpg'
 import add_icon_white from './add_icon_white.png'
 import add_icon_green from './add_icon_green.png'
 import remove_icon_red from './remove_icon_red.png'
+import account_circle from './account_circle.png'
+import contact_phone from './contact_phone.png'
+import lock from './lock.png'
 import app_store from './app_store.png'
 import play_store from './play_store.png'
 import linkedin_icon from './linkedin_icon.png'
@@ -68,12 +75,16 @@ import profile_icon from './profile_icon.png'
 import bag_icon from './bag_icon.png'
 import logout_icon from './logout_icon.png'
 import parcel_icon from './parcel_icon.png'
+import close from './close.svg'
 
 export const assets = {
     logo,
+    logo3,
     basket_icon,
     shopping_cart,
-    header_img2,
+    account_circle,
+    contact_phone,
+    lock,
     img2,
     img3,
     img4,
@@ -95,7 +106,8 @@ export const assets = {
     profile_icon,
     logout_icon,
     bag_icon,
-    parcel_icon
+    parcel_icon,
+    close
 }
 
 export const menu_list = [
@@ -163,7 +175,7 @@ export const food_list = [
         _id: "3",
         name : "GAMING ERAZER DUPUTY 15 P1",
         image: PC10,
-        price: "1,000,000 XAF",
+        price: '1,000,000 XAF',
         description: "GAMING  ERAZER DUPUTY 15 P1 [RTX 5060 8Go GDDR7] 1TB SSD 16 Gb de Ram Stockage",
         category: "Ordinateurs"
     },
@@ -383,6 +395,39 @@ export const food_list = [
         price:"15,000 XAF",
         description:"Maillot de football Paris Saint-Germain 2025/2026 Exterieur",
         category:"Maillots"
+    },
+    {
+        _id:"31",
+        name:"New Balance 530v3 Sneakers",
+        image: shoes2,
+        price:"15,000 XAF",
+        price_figure:15000,
+        description:"New Balance 530v3 Sneakers pour hommes et femmes | Confortables et élégantes pour toutes les occasions",
+        category:"Chaussures"
+    },
+    {
+        _id:"32",
+        name:"Dr Martens 1461 Bex Smooth Leather Shoes",
+        image: shoes3,
+        price:"25,000 XAF",
+        description:"Dr Martens 1461 Bex Smooth Leather Shoes | Chaussures en cuir durables et élégantes pour toutes les occasions",
+        category:"Chaussures"
+    },
+    {
+        _id:"33",
+        name:"Macbook Pro 13 Retina 2015",
+        image: PC13,
+        price:"150,000 XAF",
+        description:"Macbook Pro 13 Retina 2015 | Core i5 | 8GB RAM | 256GB SSD Stockage elegant et performant",
+        category:"Ordinateurs"
+    },
+    {
+        _id:"34",
+        name:"Dell Precision 5550 Mobile Workstation",
+        image: PC14,
+        price:"400,000 XAF",
+        description:"Dell Precision 5550 Mobile Workstation | Intel Core i7-10875H | 32GB RAM | 1TB SSD | NVIDIA Quadro T2000 4GB GDDR6 | Écran 15,6 pouces 4K UHD+ (3840 x 2400) | Windows 10 Pro",
+        category:"Ordinateurs"
     }
 
 ]

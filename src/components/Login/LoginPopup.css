@@ -1,0 +1,101 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.loginPopup{
+    background: url('img5.jpg') no-repeat ;
+    background-size:cover;
+    justify-items: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    padding-top: 20vh;
+}
+.login{
+    
+    background-color:transparent;
+    backdrop-filter: blur(10px);
+    border-radius: 10px 10px 10px 10px;
+    height: max-content;
+    width: 500px;
+    padding: 2% 3%;
+}
+.login h1{
+    color: #fff;
+    text-align: center;
+    margin-bottom: 5%;
+    margin-top: auto;
+}
+.input-box{
+    width: 100%;
+}
+.input-box input{
+    width: 100%;
+    padding: 15px;
+    border-radius: 25px;
+    outline: none;
+    background-color: white;
+    border: 2px solid rgba(255, 255,255,0.2);
+    color: #2b2a2a;
+    padding-right: 40px;
+    font-size: 1;
+    
+}
+.input-box input::placeholder {
+    color: #6c6a6a;
+
+}
+.input-box img {
+    padding-left: 90%;
+    transform: translateY(-140%);
+}
+.condition {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    color: #fff;
+    margin-bottom: 25px;
+}
+.mdp{
+    color: black;
+}
+.mdp a,.end a{
+    color: #fff;
+    font-size: 14px;
+    text-decoration:underline;
+    transition: 0.5s;
+    font-weight: bold;
+    padding: 10px;
+    margin-top: 10px;
+}
+.mdp a:hover, .end a:hover{
+    text-decoration: underline;
+}
+.lg_rg{
+    margin-top: 10px;
+}
+.lg_rg input{
+    width: 100%;
+    padding: 15px;
+    border-radius: 25px;
+    outline: none;
+    border: 0;
+    font-weight: bold;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: 0.5s;
+}
+.lg_rg input:hover{
+    background-color: transparent;
+    border: 2px solid rgba(255, 255,255, 0.2);
+    color: #fff;
+}
+.end {
+    text-align: center;
+    margin-top: 25px;
+    color: #fff;
+    font-size: 14px;
+}

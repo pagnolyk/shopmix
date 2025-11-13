@@ -7,13 +7,14 @@
     padding: 0px 20%;
     background-color: transparent whitesmoke;
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);  
-    color: white;
-    font-weight: 500;
+    color: rgb(76, 2, 69);
+    font-weight: 600;
     position: fixed;
     top: 0;
     z-index: 2;
     backdrop-filter: blur(30px);
     margin-bottom: 300px;
+    scroll-behavior: smooth;
 }
 .navbar .logo{
     padding: 5px;
@@ -33,12 +34,6 @@
     cursor: pointer;
     animation: backwards;
  }
-.navbar-menu :hover{
-    color: rgb(95, 1, 95);
-    text-decoration: none;
-    font-weight: 600;  
-    transition:0.5s;
-}
 
 .navbar-right{
     display: flex;
@@ -54,26 +49,20 @@
     padding: 10px 20px;
     border-radius: 50px;
     cursor: pointer;
-    transition: 0.7s;
+    transition: 0.6s;
 }
 .navbar button:hover{
     background-color: rgb(91, 6, 171);
     color: white;
     transition: 0.7s;
     font-weight: 600;
+    transform: scale(1.05);
+
 }
 .navbar-search-icon{
     position: relative;
 }
-.navbar-search-icon .dot{
-    position: absolute;
-    min-width: 10px;
-    min-height: 10px;
-    background-color: red;
-    border-radius: 50%;
-    top: -5px;
-    right: -5px;
-}
+
 .basket-icon{
     width: 28px;
     height: 28px;
@@ -90,6 +79,18 @@
     top: 20vh;
     right: 0;
 }
+.cart-count {
+  background: red;
+  color: white;
+  border-radius: 50%;
+  font-size: 13px;
+  padding: 2px 6px;
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  
+}
+
 @media (max-width: 1050px) {
     .navbar .logo{
         width: 140px;

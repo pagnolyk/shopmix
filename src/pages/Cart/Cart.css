@@ -1,0 +1,102 @@
+.cart{
+    margin-top: 20vh;
+}
+.cart-title{
+    background-color: rgb(95,1,95);
+    border-radius: 5px;
+}
+.cart h1{
+    text-align: center;
+    font-size: clamp(1.5rem,2.5vw,3rem);
+    margin-bottom: 2rem;
+    color: white;
+}
+.cart-items{
+    width: 100%;
+    margin: 10vh 0;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.cart-items-title{
+    display: grid;
+    grid-template-columns: 1fr 1.5fr 1fr 1fr 1fr 0.5fr;
+    font-size: max(14px, 1vw);
+}
+.cart-items-title{
+    font-weight: 700;
+    color: rgb(76, 2, 69);
+    border-bottom: 2px solid rgb(78, 1, 78);
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    font-size: clamp(1rem,1.5vw,1.5rem);
+}
+.cart-items-item{
+    color: black;
+    font-size: clamp(1rem,1.2vw,1.3rem);
+    display: grid;
+    grid-template-columns: 1fr 1.5fr 1fr 1fr 1fr 0.5fr;
+    font-weight: 600;
+    border-bottom: 1px solid rgb(139, 136, 139);
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+.cart-item-image{
+    width: 50%;
+    height: auto;
+    object-fit: cover;
+}
+.cart-item-remove{
+    color: gray;
+    font-size: 12px;
+    width: 30px;
+    height: 4vh;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.8s;
+    border-radius: 4px;
+    
+}
+.cart-item-remove :hover{
+    cursor: pointer;
+    font-size: 12px;
+    width: 30px;
+    height: max-content;
+    background-color: red;
+    border-radius: 4px;
+}
+.cart-summary p{
+    font-weight: 600;
+    border-bottom: 2px solid rgb(190, 189, 190);
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    font-size: clamp(1rem,1.3vw,1.5rem);
+}
+.cart-total{
+    font-size: clamp(1.2rem,1,5vw,2rem);
+    color: red;
+}
+.cart-button{
+    border: none;
+    font-size: 18px;
+    background-color: rgb(2, 130, 45);
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 12px 0px;
+    width: max(15vw,200px);
+    height: max-content;
+    color: white;
+    align-content: center;
+
+}
+.cart-button :hover{
+    background-color: rgb(1, 60, 1);
+    cursor: pointer;
+}
+
+@media (max-width:1024px){
+    .cart-items{
+        width: 100%;
+        margin: 3vh 1vh;
+    }
+}

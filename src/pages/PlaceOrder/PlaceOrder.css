@@ -1,0 +1,46 @@
+.place-order{
+    margin-top: 30vh;
+    
+}
+.place-order-form{
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    gap: 50px;
+}
+.place-order-left{
+    width: 100%;
+    max-width: max(30%),500px;
+}
+.place-order-left .title{
+    font-size: clamp(1.8rem,2vw,2em);
+    font-weight: 800px;
+    margin-bottom: 50px;
+    background-color: rgb(95,1,95);
+    width: 60%;
+    text-align: center;
+    padding: 5px 0px;
+    border-radius: 4px;
+    color: white;
+}
+.place-order-left input{
+    width: 50%;
+    margin-bottom: 15px;
+    padding: 10px;
+    font-size: 18px;
+    border: 1px solid rgb(160, 156, 156);
+    border-radius: 4px;
+    outline-color: rgb(95,1,95);
+}
+.place-order-left .multi-fields{
+    display: flex;
+    gap: 10px;
+}
+.place-order-right{
+    width: 100%;
+    max-width: max(40%,500px);
+}
+.cart-summary{
+    font-weight: 600px;
+    font-size: clamp(1.3rem,2vw,2.3rem);
+}
