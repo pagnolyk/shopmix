@@ -10,7 +10,20 @@ function FoodItem({ name, image, price,description}) {
   return (
     <div className='food-item'>
       <div className="food-item-img-container">
+<<<<<<< HEAD
         <img src={image} alt="" className="food-item-img" />
+=======
+        <img src={image} alt={name} className="food-item-img" />
+
+        {!cartItems[id]
+          ?<img className='add' onClick={()=>addToCart(id)} src={assets.add_icon_white} alt=""/>
+          :<div className='food-item-counter'>
+              <img onClick={()=>removeFromCart(id)} src={assets.remove_icon_red} alt=""/>
+              <p>{cartItems[id]}</p>
+              <img onClick={()=>{addToCart(id)}} src={assets.add_icon_green} alt=""/>
+          </div>
+        }
+>>>>>>> 52d662d985a7edd0caaa6838cb11862ac69eeae9
       </div>
       <div className="food-item-info">
         <div className="food-item-name-rating">

@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 
+=======
+>>>>>>> 52d662d985a7edd0caaa6838cb11862ac69eeae9
 import React, { useContext, useState} from 'react'
 import './FoodDisplay.css'
 import ItemModal from '../ItemModal/ItemModal'

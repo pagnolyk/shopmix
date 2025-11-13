@@ -1,7 +1,12 @@
 import './App.css'
 import Navbar from './components/Navbar/Navbar.jsx'
+<<<<<<< HEAD
 import Home from './pages/Home/home.jsx'
 import { Route, Routes, useLocation } from 'react-router-dom'
+=======
+import Home from './pages/Home/Home.jsx'
+import {Route, Routes} from 'react-router-dom'
+>>>>>>> 52d662d985a7edd0caaa6838cb11862ac69eeae9
 import PlaceOrder from './pages/PlaceOrder/PlaceOrder.jsx'
 import Cart from './pages/Cart/Cart.jsx'
 import Footer from './components/Footer/Footer.jsx'

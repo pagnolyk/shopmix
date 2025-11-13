@@ -1,6 +1,12 @@
+<<<<<<< HEAD
 import React from 'react'
 import './SimilarItem.css'
 import { food_list } from '../../assets/frontend_assets/assets';
+=======
+import React, { useContext } from 'react'
+import './FoodItem.css'
+import { assets, food_list } from '../../assets/frontend_assets/assets';
+>>>>>>> 52d662d985a7edd0caaa6838cb11862ac69eeae9
 import FoodItem from './FoodItem';
 
 function SimilarItems({ _id, category }){

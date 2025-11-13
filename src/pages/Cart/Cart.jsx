@@ -1,4 +1,5 @@
 import './Cart.css'
+<<<<<<< HEAD
 import { useContext } from 'react';
 import { StoreContext } from '../../context/StoreContext';
 import { assets } from '../../assets/frontend_assets/assets';
@@ -11,8 +12,12 @@ const Cart = () => {
   const shipping = 2000; 
   const total = subtotal + shipping;
   const Navigate=useNavigate();
+=======
+import ItemModal from '../../components/ItemModal/ItemModal'
+>>>>>>> 52d662d985a7edd0caaa6838cb11862ac69eeae9
 
   return (
+<<<<<<< HEAD
     <div className='cart'>
       <div className="cart-title"><h1>Votre Panier</h1></div>
       <div className="cart-items">
@@ -56,6 +61,10 @@ const Cart = () => {
         </div>
         <button onClick={()=>{Navigate('/placeorder')}} className='cart-button'>Proccéder au paiement</button>
       </div>
+=======
+    <div>
+      <ItemModal/>
+>>>>>>> 52d662d985a7edd0caaa6838cb11862ac69eeae9
     </div>
   )
 }

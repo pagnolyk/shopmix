@@ -5,7 +5,10 @@ import { food_list } from '../assets/frontend_assets/assets';
 const StoreContextProvider = (props) => {
   const { children } = props;
   const [CartItems, setCartItems] = useState({});
+  const[lastQty, setLastQty] = useState(0)
+  
 
+<<<<<<< HEAD
   // Helper: try to extract a numeric price from an item
   const parsePrice = (item) => {
     if (!item) return 0;
@@ -26,9 +29,21 @@ const StoreContextProvider = (props) => {
     setCartItems(prev => {
       const prevQty = prev[id] || 0;
       return { ...prev, [id]: prevQty + quantity };
+=======
+  const addToCart = (id, qty = 1) => {
+    console.log('addToCart called', id); // debug
+    setCartItems(prev => {
+      const prevQty = prev[id] || 0;
+      const newQty = prevQty + qty;
+      console.log('nouvelle quantite:', newQty)
+      setLastQty(newQty)
+      return { ...prev, [id]: newQty };
+>>>>>>> 52d662d985a7edd0caaa6838cb11862ac69eeae9
     });
+   
   };
 
+<<<<<<< HEAD
   const getTotalCartItems = () => {
     let total = 0;
     for (let item in CartItems) {
@@ -41,6 +56,9 @@ const StoreContextProvider = (props) => {
   // Remove quantity (default 1). If resulting qty <=0 remove the key.
   const removeFromCart = (id, quantity = 1) => {
     if (!id || quantity <= 0) return;
+=======
+  const removeFromCart = (id, qty = 1) => {
+>>>>>>> 52d662d985a7edd0caaa6838cb11862ac69eeae9
     setCartItems(prev => {
       const prevQty = prev[id] || 0;
       const newQty = prevQty - quantity;
@@ -49,6 +67,7 @@ const StoreContextProvider = (props) => {
         delete copy[id];
         return copy;
       }
+<<<<<<< HEAD
       return { ...prev, [id]: newQty };
     });
   };
@@ -72,6 +91,15 @@ const StoreContextProvider = (props) => {
     return parsePrice(item);
   };
 
+=======
+      const newQty = prevQty - qty;
+      console.log('nouvelle quantite:', newQty)
+      setLastQty(newQty)
+      return { ...prev, [id]: newQty };
+    });
+  };
+    
+>>>>>>> 52d662d985a7edd0caaa6838cb11862ac69eeae9
   useEffect(() => {
     console.log('CartItems updated:', CartItems);
   }, [CartItems]);
@@ -79,6 +107,7 @@ const StoreContextProvider = (props) => {
   const contextValue = {
     food_list,
     cartItems: CartItems,
+    lastQty,
     addToCart,
     removeFromCart,
     getTotalCartItems,
