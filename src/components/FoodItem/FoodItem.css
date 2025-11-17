@@ -19,6 +19,33 @@
     transition: 0.5s;
 }
 
+/* Compact variant used for SimilarItems and small lists */
+.food-item.compact{
+    padding: 8px;
+    border-radius: 8px;
+    border-width: 1px;
+}
+.food-item.compact .food-item-img{
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
+    margin-bottom: 8px;
+    border-radius: 6px;
+}
+.food-item.compact .food-item-name-rating p{
+    font-size: 0.95rem;
+}
+.food-item.compact img{
+    width: 60px;
+}
+.food-item.compact .food-item-price{
+    font-size: 1rem;
+    margin: 8px 0;
+}
+.food-item.compact .food-item-desc{
+    display: none;
+}
+
 .food-item-img{
     width: 100%;
     height: auto;
@@ -36,10 +63,11 @@
     margin-bottom: 10px;
 }
 .food-item-name-rating p{
-    font-size: 20px;
+    font-size: clamp(1.2rem, 1.3vw, 1.5rem);;
     font-weight: 500;
     display: -webkit-box;
   -webkit-line-clamp: 1;       /* nombre de lignes visibles */
+  line-clamp: 1;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -53,11 +81,12 @@
     white-space: wrap;
     display: -webkit-box;
   -webkit-line-clamp: 2;   
+  line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
 .food-item-price{
-    font-size: 18px;
+    font-size: clamp(1rem, 1.2vw, 1.5rem);
     font-weight: 700;
     color:rgb(215, 4, 4);
     margin: 20px 0;

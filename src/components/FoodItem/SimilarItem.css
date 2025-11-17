@@ -1,0 +1,19 @@
+/* Layout for similar items: compact grid */
+.similar-items-block{
+	margin: 20px 0;
+    
+}
+.similar-items-list{
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(300px, 3fr));
+	gap: 12px;
+	align-items: start;
+    margin-top: 3vh;
+}
+.similar-item-wrapper{
+	cursor: pointer;
+}
+.similar-item-wrapper .food-item{
+	height: 100%;
+}
+

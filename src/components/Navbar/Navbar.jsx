@@ -13,6 +13,8 @@ function Navbar() {
   }
    const { getTotalCartItems } = useContext(StoreContext);
 
+   
+
   return (
     <>
     <div className='navbar'>

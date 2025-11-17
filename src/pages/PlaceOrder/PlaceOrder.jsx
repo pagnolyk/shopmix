@@ -3,14 +3,16 @@ import './PlaceOrder.css'
 import { useNavigate } from 'react-router-dom';
 import { StoreContext } from '../../context/StoreContext';
 
-function placeOrder() {
+function PlaceOrder() {
 
   const {getCartTotalPrice } = useContext(StoreContext);
   
   const subtotal = getCartTotalPrice();
   const shipping = 2000; 
   const total = subtotal + shipping;
-  const Navigate= useNavigate();
+  const navigate= useNavigate();
+
+  
 
   return (
 
@@ -36,7 +38,7 @@ function placeOrder() {
           <p>Livraison: {shipping.toLocaleString('fr-FR')} XAF</p>
           <p className='cart-total'>Total: {total.toLocaleString('fr-FR')} XAF</p>
         </div>
-        <button onClick={()=>{Navigate('/placeorder')}} className='cart-button'>Paiement</button>
+        <button onClick={()=>{navigate('/paiement')}} className='cart-button'>Paiement</button>
 
       </div>
       
@@ -45,4 +47,4 @@ function placeOrder() {
   )
 }
 
-export default placeOrder
+export default PlaceOrder
