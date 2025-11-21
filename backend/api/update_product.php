@@ -1,39 +1,55 @@
 <?php
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods: POST, GET, OPTIONS');
+header('Access-Control-Allow-Methods: POST');
 header('Access-Control-Allow-Headers: Content-Type');
 
-if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+include 'config.php';
+
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    echo json_encode(["success" => false, "error" => "Méthode invalide"]);
     exit;
 }
 
-$input = json_decode(file_get_contents('php://input'), true);
+$id = intval($_POST['id'] ?? 0);
+$nom = $conn->real_escape_string($_POST['nom'] ?? "");
+$prix = $conn->real_escape_string($_POST['prix'] ?? "");
+$description = $conn->real_escape_string($_POST['description'] ?? "");
+$category = $conn->real_escape_string($_POST['category'] ?? "");
+$image_url = $_POST['current_image'] ?? null; // garde l’ancienne image
 
-if (!$input || !isset($input['id'])) {
-    echo json_encode(['error' => 'Données manquantes']);
+if (!$id || !$nom || !$prix) {
+    echo json_encode(["success" => false, "error" => "ID, nom et prix requis"]);
     exit;
 }
 
-$id = $input['id'];
-$nom = $input['nom'] ?? 'Sans nom';
-$prix = $input['prix'] ?? '0.00';
-$description = $input['description'] ?? '';
-$category = $input['category'] ?? 'autre';
-$image = $input['image'] ?? 'default.jpg';
+// Gestion de l’upload image si nouvelle ajoutée
+if (!empty($_FILES['image']['name'])) {
+    $upload_dir = __DIR__ . '/images/';
+    if (!is_dir($upload_dir)) mkdir($upload_dir, 0755, true);
 
-// TODO: Mettre à jour dans la BD : UPDATE products SET nom = ?, prix = ?, ...
+    $filename = uniqid('product_') . '_' . basename($_FILES['image']['name']);
+    $filepath = $upload_dir . $filename;
 
-echo json_encode([
-    'success' => true,
-    'message' => 'Produit mis à jour avec succès',
-    'product' => [
-        'id' => $id,
-        'nom' => $nom,
-        'prix' => $prix,
-        'description' => $description,
-        'category' => $category,
-        'image' => $image
-    ]
-]);
+    if (move_uploaded_file($_FILES['image']['tmp_name'], $filepath)) {
+        $image_url = "http://localhost/backend/api/images/" . $filename;
+    }
+}
+
+// Requête UPDATE
+$sql = "UPDATE products SET 
+        nom='$nom', 
+        prix='$prix', 
+        description='$description', 
+        category='$category', 
+        image='$image_url'
+        WHERE id=$id";
+
+if ($conn->query($sql)) {
+    echo json_encode(["success" => true, "message" => "Produit modifié"]);
+} else {
+    echo json_encode(["success" => false, "error" => $conn->error]);
+}
+
+$conn->close();
 ?>

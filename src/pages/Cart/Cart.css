@@ -75,20 +75,20 @@
     font-size: clamp(1rem,1.3vw,1.5rem);
 }
 .cart-total{
-    font-size: clamp(1.2rem,1,5vw,2rem);
-    color: red;
+    font-size: clamp(1.2rem,1,8vw,2rem);
+    color: rgb(250, 82, 82);
+    
 }
 .cart-button{
     border: none;
     font-size: 18px;
     background-color: rgb(2, 130, 45);
-    border-radius: 4px;
+    border-radius: 10px;
     cursor: pointer;
     padding: 12px 0px;
-    width: max(15vw,200px);
-    height: max-content;
+    width: auto;
+    height:auto;
     color: white;
-    align-content: center;
     margin-top: 5vh;
 
 }
@@ -96,6 +96,93 @@
     background-color: rgb(1, 60, 1);
     cursor: pointer;
 }
+.payment-popup-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  backdrop-filter: blur(3px);
+}
+
+.payment-popup {
+  width: 500px;
+  background: #fff;
+  border-radius: 18px;
+  padding: 20px;
+  text-align: center;
+  display: grid;
+  gap: 15px;
+  animation: fadeIn .35s ease;
+  box-shadow: 0 8px 30px rgba(0,0,0,.25);
+}
+
+.payment-popup h2 {
+  color: black;
+  margin-bottom: 10px;
+  font-size: clamp(1.2rem,1.8em,2.3rem);
+}
+
+.payment-popup input,
+.payment-popup select {
+  padding: 11px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  font-size: 15px;
+}
+
+.popup-total {
+  display: flex;
+  justify-content: space-between;
+  background: #eceaea;
+  padding: 12px;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: clamp(1rem,1.5em,2rem);
+  color: rgb(247, 82, 82);
+
+}
+.popup-total span{
+    color: black;
+}
+
+.confirm-btn {
+  background: rgb(2, 130, 45);
+  color: #f5f2f2;
+  padding: 12px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.5s;
+  font-size: 18px;
+}
+
+.confirm-btn:hover {
+  background: rgb(163, 3, 3);
+}
+
+.close-btn {
+  position: absolute;
+  font-size: 24px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  margin-top: 0px;
+  left: 61%;
+  color:grey;
+  z-index: 3000000; 
+}
+.close-btn:hover{
+    color: rgb(228, 6, 6);
+}
+
+@keyframes fadeIn {
+  from {opacity: 0; transform: scale(.7);}
+  to {opacity: 1; transform: scale(1);}
+}
+
 
 @media (max-width:1024px){
     .cart-items{

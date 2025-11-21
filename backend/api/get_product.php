@@ -2,6 +2,8 @@
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
 
+include 'config.php';
+
 $id = $_GET['id'] ?? null;
 
 if (!$id) {
@@ -9,10 +11,9 @@ if (!$id) {
     exit;
 }
 
-// Données fictives (à remplacer par requête BD SELECT WHERE id = $id)
-
-$stmt = $pdo->prepare("SELECT * FROM products WHERE id = ?");
+$stmt = $conn->prepare("SELECT * FROM products WHERE id = $id");
 $stmt->execute([$id]);
 $product = $stmt->fetch(PDO::FETCH_ASSOC);
+
 echo json_encode($product);
 ?>

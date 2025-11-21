@@ -20,8 +20,7 @@ function AdminAddProduct() {
       reader.readAsDataURL(file)
     }
   }
-
- const handleSubmit = async (e) => {
+const handleSubmit = async (e) => {
   e.preventDefault();
   setLoading(true);
   setMessage("");
@@ -36,31 +35,44 @@ function AdminAddProduct() {
 
     const res = await fetch("http://localhost/backend/api/add_product.php", {
       method: "POST",
-      body: formData
+      body: formData,
     });
 
+    // Lire le type de contenu pour décider comment parser
+    const contentType = res.headers.get("content-type") || "";
+
+    // Si ce n'est pas ok (status >= 400), lire le texte pour debug
     if (!res.ok) {
-      throw new Error("Erreur HTTP : " + res.status);
+      const text = await res.text();
+      console.error("Réponse non OK (texte) :", text);
+      setMessage("✗ Erreur réseau : status " + res.status + ". Voir console pour la réponse du serveur.");
+      return;
     }
 
-    const data = await res.json();
+    if (contentType.includes("application/json")) {
+      const data = await res.json();
+      console.log("Réponse API JSON :", data);
 
-    console.log("Réponse API :", data);
-
-    if (data.success) {
-      setMessage("✓ Produit ajouté avec succès");
-      setNom("");
-      setPrix("");
-      setDescription("");
-      setCategory("autre");
-      setImage(null);
-      setPreview(null);
-      setTimeout(() => setMessage(""), 3000);
+      if (data.success) {
+        setMessage("✓ Produit ajouté avec succès");
+        setNom("");
+        setPrix("");
+        setDescription("");
+        setCategory("autre");
+        setImage(null);
+        setPreview(null);
+        setTimeout(() => setMessage(""), 3000);
+      } else {
+        setMessage("✗ Erreur : " + (data.error || "Impossible d'ajouter le produit"));
+      }
     } else {
-      setMessage("✗ Erreur : " + (data.error || "Impossible d'ajouter le produit"));
+      // Ce n'est pas du JSON — lire le texte entier (probablement HTML avec erreurs)
+      const text = await res.text();
+      console.error("Réponse du serveur (non JSON) :", text);
+      setMessage("✗ Erreur : le serveur n'a pas renvoyé de JSON. Voir console pour la réponse.");
     }
   } catch (err) {
-    console.error("Erreur réseau :", err.message);
+    console.error("Erreur réseau :", err);
     setMessage("✗ Erreur réseau : " + err.message);
   } finally {
     setLoading(false);

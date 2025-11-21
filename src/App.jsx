@@ -28,7 +28,7 @@ function App() {
 
   return (
     <>
-      {useContext(StoreContext)?.itemsLoading && (
+       {useContext(StoreContext)?.itemsLoading && (
         <div className="global-loader">
           <div className="loader-box">Chargement des produits…</div>
         </div>

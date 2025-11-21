@@ -8,3 +8,17 @@
   font-optical-sizing: auto;
   scroll-behavior: smooth;
 }
+
+/* Bouton */
+.theme-toggle-btn {
+  background: transparent;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+/* Transition fluide partout */
+* {
+  transition: background-color 0.35s ease, color 0.35s ease, border-color .35s ease,
+              transform .25s ease;
+}

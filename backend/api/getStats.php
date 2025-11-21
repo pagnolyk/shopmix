@@ -4,7 +4,7 @@ header('Access-Control-Allow-Origin: *');
 
 // Données fictives (à remplacer par des requêtes BD réelles)
 $stats = [
-    'total_sales' => '125,450 €',
+    'total_sales' => '2,325,450 XAF',
     'total_orders' => 342,
     'total_customers' => 87,
     'total_products' => 24,

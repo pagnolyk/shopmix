@@ -27,10 +27,8 @@ function AdminOrders() {
     .catch(err => console.error("Erreur mise à jour :", err));
   }
 
-  // Filtrage des commandes
   const filteredOrders = filter === 'all' ? orders : orders.filter(o => o.status === filter);
 
-  // Pagination
   const indexOfLastOrder = currentPage * ordersPerPage;
   const indexOfFirstOrder = indexOfLastOrder - ordersPerPage;
   const currentOrders = filteredOrders.slice(indexOfFirstOrder, indexOfLastOrder);
@@ -40,7 +38,6 @@ function AdminOrders() {
     <div className="admin-orders">
       <h2>Gestion des commandes</h2>
 
-      {/* Filtre */}
       <div className="filter">
         <label>Filtrer par statut :</label>
         <select value={filter} onChange={e => { setFilter(e.target.value); setCurrentPage(1); }}>
@@ -88,7 +85,6 @@ function AdminOrders() {
         </tbody>
       </table>
 
-      {/* Pagination */}
       {totalPages > 1 && (
         <div className="pagination">
           {[...Array(totalPages)].map((_, idx) => (

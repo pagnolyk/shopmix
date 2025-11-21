@@ -1,50 +1,44 @@
-import {React,useContext} from 'react'
-import './PlaceOrder.css'
-import { useNavigate } from 'react-router-dom';
-import { StoreContext } from '../../context/StoreContext';
+import React from "react";
+import "./PlaceOrder.css";
 
-function PlaceOrder() {
-
-  const {getCartTotalPrice } = useContext(StoreContext);
-  
-  const subtotal = getCartTotalPrice();
-  const shipping = 2000; 
-  const total = subtotal + shipping;
-  const navigate= useNavigate();
-
-  
+export default function PlaceOrder({ isOpen, onClose, onConfirm, total }) {
+  if (!isOpen) return null;
 
   return (
+    <div className="pm-overlay">
+      <div className="pm-modal">
+        <button className="pm-close" onClick={onClose}>×</button>
 
-    <div className='place-order'>
-    <form className='place-order-form'>
-      <div className="place-order-left">
-        <p className="title">Informations</p>
-        <div className="multi-fields">
-          <input type='text' placeholder='Nom'/>
-          <input type='text' placeholder='Prénom'/>
+        <h2 className="pm-title">Procéder au paiement</h2>
+
+        <div className="pm-section">
+          <label>Nom complet</label>
+          <input type="text" placeholder="Ex: Jean Mbarga" />
         </div>
 
-        <div className="multi-fields">
-          <input type='mail' placeholder='Adresse E-mail'/>
-          <input type='text' placeholder='Ville'/>
-          <input type='text' placeholder='Quartier'/>
-          <input type='text' placeholder='Téléphone'/>
-        </div>    
-      </div>
-      <div className="place-order-right">
-         <div className="cart-summary">
-          <p>Sous-total: {subtotal.toLocaleString('fr-FR')} XAF</p>
-          <p>Livraison: {shipping.toLocaleString('fr-FR')} XAF</p>
-          <p className='cart-total'>Total: {total.toLocaleString('fr-FR')} XAF</p>
+        <div className="pm-section">
+          <label>Adresse de livraison</label>
+          <input type="text" placeholder="Quartier, Ville" />
         </div>
-        <button onClick={()=>{navigate('/paiement')}} className='cart-button'>Paiement</button>
 
+        <div className="pm-section">
+          <label>Méthode de paiement</label>
+          <select>
+            <option>Mobile Money</option>
+            <option>Carte Bancaire</option>
+            <option>Paiement à la livraison</option>
+          </select>
+        </div>
+
+        <div className="pm-summary">
+          <span>Total à payer :</span>
+          <strong>{total} XAF</strong>
+        </div>
+
+        <button className="pm-btn" onClick={onConfirm}>
+          Valider le paiement
+        </button>
       </div>
-      
-    </form>
     </div>
-  )
+  );
 }
-
-export default PlaceOrder

@@ -1,52 +1,57 @@
 <?php
-header('Content-Type: application/json');
+header('Content-Type: application/json; charset=utf-8');
 header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods: POST, GET, OPTIONS');
+header('Access-Control-Allow-Methods: POST, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type');
 
-if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+include 'config.php';
+
+function sendResponse($success, $message = null, $data = null) {
+    echo json_encode([
+        "success" => $success,
+        "message" => $message,
+        "data" => $data
+    ]);
     exit;
 }
 
-$nom = $_POST['nom'] ?? null;
-$prix = $_POST['prix'] ?? null;
-$description = $_POST['description'] ?? null;
-$category = $_POST['category'] ?? 'autre';
-
-if (!$nom || !$prix) {
-    echo json_encode(['success' => false, 'error' => 'Nom et prix requis']);
-    exit;
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    sendResponse(false, "Méthode invalide");
 }
 
-$image_url = null;
+if (empty($_POST['nom']) || empty($_POST['prix'])) {
+    sendResponse(false, "Nom et prix requis");
+}
 
-// Gestion de l'upload d'image
-if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
+$nom = $_POST['nom'];
+$prix = $_POST['prix'];
+$description = $_POST['description'] ?? "";
+$category = $_POST['category'] ?? "";
+$image_url = "";
+
+// Upload image
+if (isset($_FILES['image']) && $_FILES['image']['error'] === 0) {
     $upload_dir = __DIR__ . '/images/';
-    if (!is_dir($upload_dir)) {
-        mkdir($upload_dir, 0755, true);
-    }
+    if (!is_dir($upload_dir)) mkdir($upload_dir, 0755, true);
 
-    $filename = uniqid('product_') . '_' . basename($_FILES['image']['name']);
+    $filename = uniqid('product_') . "_" . preg_replace("/[^a-zA-Z0-9_.]/", "", basename($_FILES['image']['name']));
     $filepath = $upload_dir . $filename;
 
     if (move_uploaded_file($_FILES['image']['tmp_name'], $filepath)) {
-        $image_url = 'http://localhost/backend/api/image.php?file=' . $filename;
+        $image_url = "http://localhost/backend/api/images/" . $filename;
     }
 }
 
-// TODO: Insérer dans la BD
-// INSERT INTO products (nom, prix, description, category, image) VALUES (?, ?, ?, ?, ?)
+// ✅ Requête préparée correcte
+$stmt = $conn->prepare("INSERT INTO products (nom, image, prix, description, category) VALUES ('$nom','$image_url','$prix','$description','$category')");
+$stmt->bind_param("sssss", $nom, $image_url, $prix, $description, $category);
 
-echo json_encode([
-    'success' => true,
-    'message' => 'Produit ajouté avec succès',
-    'product' => [
-        'nom' => $nom,
-        'prix' => $prix,
-        'description' => $description,
-        'category' => $category,
-        'image' => $image_url
-    ]
-]);
+if ($stmt->execute()) {
+    sendResponse(true, "Produit ajouté avec succès", ["id" => $stmt->insert_id]);
+} else {
+    sendResponse(false, "Erreur SQL : " . $stmt->error);
+}
+
+$stmt->close();
+$conn->close();
 ?>

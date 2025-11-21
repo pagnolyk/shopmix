@@ -5,6 +5,7 @@ import { useNavigate,Link } from 'react-router-dom';
 import { useContext } from 'react';
 import { StoreContext } from '../../context/StoreContext';
 
+
 function Navbar() {
   const [menu, setMenu]=useState("menu");
   const Navigate = useNavigate();
@@ -12,8 +13,6 @@ function Navbar() {
     Navigate('/Login');
   }
    const { getTotalCartItems } = useContext(StoreContext);
-
-   
 
   return (
     <>

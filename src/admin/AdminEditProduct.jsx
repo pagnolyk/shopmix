@@ -46,43 +46,44 @@ function AdminEditProduct() {
     }
   };
 
-  const handleUpdate = (e) => {
-    e.preventDefault();
-    setSubmitting(true);
-    setMessage("");
+ const handleUpdate = (e) => {
+  e.preventDefault();
+  setSubmitting(true);
+  setMessage("");
 
-    fetch("http://localhost/backend/api/update_product.php", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        id,
-        nom,
-        prix,
-        description,
-        category,
-        image: image || preview,
-      }),
-      
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.success) {
-          setMessage("✓ Produit mis à jour avec succès");
-          setTimeout(() => navigate("/admin/products"), 2000);
-        } else {
-          setMessage("✗ Erreur : " + (data.error || "Mise à jour échouée"));
-        }
-        setSubmitting(false);
-      })
-      .catch((err) => {
-        setMessage("✗ Erreur réseau : " + err.message);
-        setSubmitting(false);
-      });
-  };
+  const formData = new FormData();
+  formData.append("id", id);
+  formData.append("nom", nom);
+  formData.append("prix", prix);
+  formData.append("description", description);
+  formData.append("category", category);
 
-  if (loading) {
-    return <div className="admin-page"><div className="loading">Chargement...</div></div>;
+  if (!image) {
+    formData.append("current_image", preview);
+  } else {
+    formData.append("image", image);
   }
+
+  fetch("http://localhost/backend/api/update_product.php", {
+    method: "POST",
+    body: formData, 
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      if (data.success) {
+        setMessage("✓ Produit mis à jour avec succès");
+        setTimeout(() => navigate("/admin/products"), 1500);
+      } else {
+        setMessage("✗ Erreur : " + (data.error || "Mise à jour échouée"));
+      }
+      setSubmitting(false);
+    })
+    .catch((err) => {
+      setMessage("✗ Erreur réseau : " + err.message);
+      setSubmitting(false);
+    });
+};
+
 
   return (
     <div className="admin-page">

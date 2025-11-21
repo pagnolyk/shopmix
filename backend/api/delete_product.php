@@ -1,18 +1,24 @@
 <?php
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Methods: POST, GET');
+header('Access-Control-Allow-Headers: Content-Type');
 
-$id = $_GET['id'] ?? null;
+include 'config.php';
 
-if (!$id) {
-    echo json_encode(['error' => 'ID manquant']);
+if (!isset($_GET['id'])) {
+    echo json_encode(["message" => "ID manquant"]);
     exit;
 }
 
-// TODO: Supprimer de la BD : DELETE FROM products WHERE id = $id
+$id = intval($_GET['id']);
 
-echo json_encode([
-    'success' => true,
-    'message' => 'Produit supprimé avec succès'
-]);
+$sql = "DELETE FROM products WHERE id = $id";
+if ($conn->query($sql) === TRUE) {
+    echo json_encode(["message" => "Produit supprimé avec succès"]);
+} else {
+    echo json_encode(["message" => "Erreur SQL : " . $conn->error]);
+}
+
+$conn->close();
 ?>
