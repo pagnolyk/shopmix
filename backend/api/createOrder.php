@@ -8,28 +8,35 @@ include 'config.php';
 $data = json_decode(file_get_contents("php://input"), true);
 
 $user_id = $data["user_id"];
-$total = $data["total_amount"];
-$items = $data["items"]; // tableau produits
+$total   = $data["total_amount"];
+$items   = $data["items"];
+$fullname = $data["full_name"] ?? "";
+$phone = $data["phone"] ?? "";
+$address = $data["address"] ?? "";
+$payment = $data["payment_method"] ?? "";
 
 $conn->begin_transaction();
 
 try {
-    // 1️⃣ Insérer la commande
-    $sql = "INSERT INTO orders (user_id, total_amount) VALUES ('$user_id', '$total')";
+    $sql = "INSERT INTO orders (user_id, total_amount, fullname, phone, address, payment_method, status) 
+            VALUES (?, ?, ?, ?, ?, ?, 'en cours')";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("id", $user_id, $total);
+    $stmt->bind_param("idssss", $user_id, $total, $fullname, $phone, $address, $payment);
     $stmt->execute();
-    $order_id = $conn->insert_id;
+    $order_id = $stmt->insert_id;
+    $stmt->close();
 
-    // 2️⃣ Insérer chaque produit
-    $sql_item = "INSERT INTO order_items (order_id, product_id, quantity, price)
-                 VALUES ('$order_id' ,''$product_id' ,'$quantity','$price')";
+    $sql_item = "INSERT INTO order_items (order_id, product_id, quantity, price) VALUES (?, ?, ?, ?)";
     $stmt_item = $conn->prepare($sql_item);
 
     foreach ($items as $item) {
-        $stmt_item->bind_param("iiid", $order_id, $item["product_id"], $item["quantity"], $item["price"]);
+        $product_id = $item["product_id"];
+        $quantity   = $item["quantity"];
+        $price      = $item["price"];
+        $stmt_item->bind_param("iiid", $order_id, $product_id, $quantity, $price);
         $stmt_item->execute();
     }
+    $stmt_item->close();
 
     $conn->commit();
     echo json_encode(["success" => true, "order_id" => $order_id]);
@@ -38,3 +45,4 @@ try {
     $conn->rollback();
     echo json_encode(["success" => false, "error" => $e->getMessage()]);
 }
+?>

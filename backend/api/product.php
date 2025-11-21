@@ -1,22 +1,18 @@
 <?php
-// Autoriser l’accès API
 header('Access-Control-Allow-Origin: *');
 header('Content-Type: application/json');
 
-// Connexion à la base de données
 $host = "localhost";
 $user = "root";
-$password = ""; // mets ton mot de passe si tu en as un
-$dbname = "shopmix"; // ⚠️ Mets ici le nom exact de ta base
+$password = ""; 
+$dbname = "shopmix"; 
 
 $conn = new mysqli($host, $user, $password, $dbname);
 
-// Vérifier la connexion
 if ($conn->connect_error) {
     die(json_encode(["error" => "Erreur de connexion à MySQL : " . $conn->connect_error]));
 }
 
-// Requête SQL pour récupérer les produits
 $sql = "SELECT * FROM products";
 $result = $conn->query($sql);
 

@@ -1,10 +1,10 @@
 <?php
-header('Content-Type: application/json');
+header('Content-Type: application/json; charset=utf-8');
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: POST');
 header('Access-Control-Allow-Headers: Content-Type');
 
-include 'config.php';
+include 'config.php'; // $conn = new mysqli(...)
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     echo json_encode(["success" => false, "error" => "Méthode invalide"]);
@@ -12,23 +12,22 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 }
 
 $id = intval($_POST['id'] ?? 0);
-$nom = $conn->real_escape_string($_POST['nom'] ?? "");
-$prix = $conn->real_escape_string($_POST['prix'] ?? "");
-$description = $conn->real_escape_string($_POST['description'] ?? "");
-$category = $conn->real_escape_string($_POST['category'] ?? "");
-$image_url = $_POST['current_image'] ?? null; // garde l’ancienne image
+$nom = trim($_POST['nom'] ?? "");
+$prix = trim($_POST['prix'] ?? "");
+$description = trim($_POST['description'] ?? "");
+$category = trim($_POST['category'] ?? "");
+$image_url = $_POST['current_image'] ?? null;
 
-if (!$id || !$nom || !$prix) {
+if (!$id || empty($nom) || empty($prix)) {
     echo json_encode(["success" => false, "error" => "ID, nom et prix requis"]);
     exit;
 }
 
-// Gestion de l’upload image si nouvelle ajoutée
-if (!empty($_FILES['image']['name'])) {
+if (isset($_FILES['image']) && $_FILES['image']['error'] === 0) {
     $upload_dir = __DIR__ . '/images/';
     if (!is_dir($upload_dir)) mkdir($upload_dir, 0755, true);
 
-    $filename = uniqid('product_') . '_' . basename($_FILES['image']['name']);
+    $filename = uniqid('product_') . '_' . preg_replace("/[^a-zA-Z0-9_.]/", "", basename($_FILES['image']['name']));
     $filepath = $upload_dir . $filename;
 
     if (move_uploaded_file($_FILES['image']['tmp_name'], $filepath)) {
@@ -36,20 +35,28 @@ if (!empty($_FILES['image']['name'])) {
     }
 }
 
-// Requête UPDATE
 $sql = "UPDATE products SET 
-        nom='$nom', 
-        prix='$prix', 
-        description='$description', 
-        category='$category', 
-        image='$image_url'
-        WHERE id=$id";
+            nom = ?, 
+            image = ?, 
+            prix = ?, 
+            description = ?, 
+            category = ?
+        WHERE id = ?";
 
-if ($conn->query($sql)) {
-    echo json_encode(["success" => true, "message" => "Produit modifié"]);
-} else {
-    echo json_encode(["success" => false, "error" => $conn->error]);
+$stmt = $conn->prepare($sql);
+if (!$stmt) {
+    echo json_encode(["success" => false, "error" => "Erreur de préparation : " . $conn->error]);
+    exit;
 }
 
+$stmt->bind_param("ssdssi", $nom, $image_url, $prix, $description, $category, $id);
+
+if ($stmt->execute()) {
+    echo json_encode(["success" => true, "message" => "Produit modifié avec succès"]);
+} else {
+    echo json_encode(["success" => false, "error" => "Erreur SQL : " . $stmt->error]);
+}
+
+$stmt->close();
 $conn->close();
 ?>
